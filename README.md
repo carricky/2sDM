@@ -1,7 +1,10 @@
 # 2sDM
 This repository contains code for the paper
+
 [**Hierarchical nonlinear embedding reveals brain states and performance differences during working memory tasks**](https://ccneuro.org/2018/proceedings/1139.pdf)
+
 CCN 2018
+
 ![hcp_embedding](output/hcp_embedding.png?raw=true "HCP embedding")
 
 ## Dataset we used
