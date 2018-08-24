@@ -9,6 +9,6 @@ CCN 2018
 - Philadelphia Neurodevelopmental Cohort (PNC) dataset
 
 ## Citation
-`S. Gao, G. Mishne, D. Scheinost, “Hierarchical nonlinear embedding reveals brain states and performance differences during working memory tasks,” in Conference on Cognitive Computational Neuroscience (CCN), 2018, Philadelphia, Pennsylvania, USA, Sep 2018.
+`S. Gao, G. Mishne, D. Scheinost, “Hierarchical nonlinear embedding reveals brain states and performance differences during working memory tasks,” in Conference on Cognitive Computational Neuroscience (CCN), 2018, Philadelphia, Pennsylvania, USA, Sep 2018.`
 
 For any questions, please contact Siyuan Gao (siyuan.gao@yale.edu)
