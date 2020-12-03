@@ -1,16 +1,13 @@
 # 2sDM
 This repository contains code for the paper
 
+[**Non-linear manifold learning in fMRI uncovers a low-dimensional space of brain dynamics**](https://www.biorxiv.org/content/10.1101/2020.11.25.398693v1)
+
 [**A Hierarchical Manifold Learning Framework for High-Dimensional Neuroimaging Data**](https://link.springer.com/chapter/10.1007/978-3-030-20351-1_49)
 
 [**Hierarchical nonlinear embedding reveals brain states and performance differences during working memory tasks**](https://ccneuro.org/2018/proceedings/1139.pdf)
 
-IPMI 2019
-![hcp_embedding](output/rs_manifold.png?raw=true "hcp_embedding")
-
-CCN 2018
-
-![WM_embedding](output/hcp_embedding.png?raw=true "WM_embedding")
+![hcp_embedding](output/hcp_embedding_trajectory.png?raw=true "hcp_embedding")
 
 ## Dataset we used
 - Human connectome project (HCP) dataset
