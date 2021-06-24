@@ -1,4 +1,4 @@
-function [K, nnData] = calcAffinityMat(X, configParams)
+function [K, nnData, sig] = calcAffinityMat(X, configParams)
 % calculate affinity matrix of data matrix X, size N by M 
 % N - length of feature vector, M - number of vectors
 % affinity matrix is calculated for kNN nearest neighbors, resulting in
@@ -10,6 +10,7 @@ function [K, nnData] = calcAffinityMat(X, configParams)
 dParams.dist_type = 'euclidean';
 dParams.kNN = 10;
 dParams.self_tune = 5;
+dParams.sig = 0;
 dParams.verbose = false;
 configParams = setParams(dParams, configParams);
 
@@ -17,9 +18,10 @@ configParams = setParams(dParams, configParams);
 configParams.kNN = min(configParams.kNN,M);
 
 %% affinity matrix
-tic
-[Dis, Inds] = pdist2(X',X',configParams.dist_type,'Smallest',configParams.kNN);
-toc
+% tic
+[Dis, Inds] = pdist2(X',X',configParams.dist_type,'Smallest',...
+    configParams.kNN);
+% toc
             
 nnData.nnDist = Dis;
 nnData.nnInds = Inds;
@@ -42,7 +44,8 @@ if configParams.self_tune
 end
 if configParams.self_tune
     for i = 1:M
-        autotuneVals(ind : ind + configParams.kNN - 1) = sigmaKvec(i) * sigmaKvec(nnData.nnInds(:,i));
+        autotuneVals(ind : ind + configParams.kNN - 1) = sigmaKvec(i) ...
+            * sigmaKvec(nnData.nnInds(:,i));
         ind = ind + configParams.kNN;
     end
 end
@@ -56,10 +59,18 @@ nnData.indsXX = sub2ind([M, M], rowInds, colInds);
 if configParams.self_tune
     vals = exp(-vals.^2./(autotuneVals+eps));
     K = sparse(rowInds, colInds, vals, M, M);
+elseif configParams.sig
+    sig = configParams.sig;
+    vals = exp(-vals.^2/sig^2);
+    K = sparse(rowInds, colInds, vals, M, M);
 else
     sig = median(vals);
     vals = exp(-vals.^2/sig^2);
     K = sparse(rowInds, colInds, vals, M, M);
 end
 K = (K + K')/2;
+
+if ~exist('sig', 'var')
+    sig = -1;
+end
 return

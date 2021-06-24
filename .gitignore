@@ -1,3 +1,5 @@
+*.ipynb_checkpoints
+
 # Windows default autosave extension
 *.asv
 
@@ -27,4 +29,7 @@ codegen/
 # Octave session info
 octave-workspace
 
+# slides
+*.pptx
 
+output/

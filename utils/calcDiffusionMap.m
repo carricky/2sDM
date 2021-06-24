@@ -51,7 +51,8 @@ options.isreal = true;
 options.issym = true;
 % calculating first configParams.maxInd eigenvalues and vectors
 if issparse(Ms)
-    [v,lambda] = eigs(Ms,configParams.maxInd,'lm',options);
+%     [v,lambda] = eigs(Ms,configParams.maxInd,'largestabs',options);
+    [v,lambda] = eigs(Ms,configParams.maxInd,'largestabs'); % edited by siyuan, no need for options
     Lambda     = diag(lambda);
     [Lambda,I] = sort(Lambda,'descend'); %eigs doesn't return the values sorted
     v          = v(:,I);
@@ -107,3 +108,5 @@ if configParams.plotResults
     
     title('Diffusion Map');
 end
+
+Lambda = Lambda(2:end);
