@@ -1,23 +1,20 @@
-%% add path
-addpath('/Users/siyuangao/Working_Space/fmri/code_siyuan/2018summer/2sDM/src')
+% This script generates the 2sDM embedding for HCP time series and also
+% performs a kmeans clustering on top of the embedding.
+% This script should be run in 2sDM/lite directory.
 
-%% load data
+%% load HCP data and label (change to your own path)
 load('/Users/siyuangao/Working_Space/fmri/data/HCP515/signals/data.mat')
 load('/Users/siyuangao/Working_Space/fmri/data/HCP515/signals/true_label/true_label_all_withrest_coarse.mat')
-load('/Users/siyuangao/Working_Space/fmri/code_siyuan/2018summer/2sDM/utils/cmap10.mat')
-load('/Users/siyuangao/Working_Space/fmri/code_siyuan/2018summer/2sDM/utils/cmap4_2.mat')
-load('/Users/siyuangao/Working_Space/fmri/data/parcellation_and_network/map259.mat')
+
+%% add path and load colormaps
+addpath('../src')
+load('../utils/cmap10.mat')
+load('../utils/cmap4_2.mat')
 
 % choose less subjects for quicker computation
 data = data(:, :, 1:30);
 
-% % zscore the region
-% for i_sub = 1 : size(data,3)
-%     data(:, :, i_sub) = zscore(data(:, :, i_sub), 0, 2);
-% end
-
 task_endtime = [0,772,1086,1554,2084,2594,3020,4176];
-% task_length = [772,314,468,530,510,426]
 test_range = 3021:5382;
 train_range = 1:3020;
 
@@ -71,10 +68,6 @@ kmeans_idx(kmeans_idx==2)=6;
 kmeans_idx(kmeans_idx==3)=5;
 kmeans_idx(kmeans_idx==4)=7;
 
-% kmeans_idx(kmeans_idx==1)=6;
-% kmeans_idx(kmeans_idx==2)=8;
-% kmeans_idx(kmeans_idx==3)=7;
-% kmeans_idx(kmeans_idx==4)=5;
 kmeans_idx = kmeans_idx-4;
 
 figure;
